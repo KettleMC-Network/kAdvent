@@ -1,4 +1,4 @@
-package net.kettlemc.example.loading;
+package net.kettlemc.advent.loading;
 
 public interface Loadable {
 

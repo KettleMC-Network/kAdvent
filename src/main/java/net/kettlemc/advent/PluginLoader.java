@@ -1,7 +1,6 @@
-package net.kettlemc.example;
+package net.kettlemc.advent;
 
-
-import net.kettlemc.example.loading.Loadable;
+import net.kettlemc.advent.loading.Loadable;
 
 public class PluginLoader extends org.bukkit.plugin.java.JavaPlugin {
 
@@ -9,7 +8,7 @@ public class PluginLoader extends org.bukkit.plugin.java.JavaPlugin {
 
     @Override
     public void onLoad() {
-        this.plugin = new Plugin(this);
+        this.plugin = new KAdvent(this);
         plugin.onLoad();
     }
 

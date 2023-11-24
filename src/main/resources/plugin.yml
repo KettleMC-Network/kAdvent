@@ -7,3 +7,8 @@ api-version: ${apiversion}
 website: ${website}
 depend:
   - "kLoader"
+commands:
+  advent:
+    aliases: [advent, adventskalender, adventcalendar]
+    usage: /advent [give|set|reload|reset]
+    description: Main command for the advent calendar plugin
