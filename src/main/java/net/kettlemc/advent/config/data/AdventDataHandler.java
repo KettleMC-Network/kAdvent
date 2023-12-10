@@ -24,25 +24,6 @@ public class AdventDataHandler {
     private final Map<Integer, List<ItemStack>> items = new HashMap<>();
 
     /**
-     * Returns whether the door for a certain day can be opened today.
-     *
-     * @param day The day to check
-     * @return Whether the door for the provided day can be opened today.
-     */
-    public static boolean allowedToOpenYet(int day) {
-        LocalDate currentDate = LocalDate.now();
-
-        if (!Configuration.ANY_MONTH.getValue() && currentDate.getMonth() != Month.DECEMBER) {
-            return false;
-        }
-
-        int today = currentDate.getDayOfMonth();
-
-        return Configuration.ANY_DAY.getValue() || day <= today && day + Configuration.MAX_DAYS_LATE.getValue() >= today;
-
-    }
-
-    /**
      * Loads the advent calendar data from the calendar file.
      */
     public void loadCalendar() {
@@ -100,12 +81,25 @@ public class AdventDataHandler {
      */
     public OpenResult open(Player player, int day) {
 
-        if (!allowedToOpenYet(day)) {
-            return LocalDate.now().getDayOfMonth() > day ? OpenResult.TOO_LATE : OpenResult.TOO_EARLY;
+        LocalDate currentDate = LocalDate.now();
+
+        if (!Configuration.ANY_MONTH.getValue() && currentDate.getMonth() != Month.DECEMBER) {
+            return OpenResult.TOO_EARLY;
         }
 
         if (!this.items.containsKey(day)) {
             return OpenResult.NOT_CONFIGURED;
+        }
+
+        int today = currentDate.getDayOfMonth();
+
+        if (!Configuration.ANY_DAY.getValue()) {
+            if (today - Configuration.MAX_DAYS_LATE.getValue() >= day) {
+                return OpenResult.TOO_LATE;
+            }
+            if (today < day) {
+                return OpenResult.TOO_EARLY;
+            }
         }
 
         AdventPlayer adventPlayer = loadPlayer(player.getUniqueId());
@@ -218,6 +212,11 @@ public class AdventDataHandler {
         return this.items.containsKey(day);
     }
 
+    public void saveAll() {
+        saveCalender();
+        this.players.forEach((uuid, player) -> savePlayer(uuid));
+    }
+
     public enum OpenResult {
         SUCCESSFUL,
         ALREADY_OPENED,
@@ -225,10 +224,5 @@ public class AdventDataHandler {
         INVENTORY_FULL,
         TOO_LATE,
         TOO_EARLY
-    }
-
-    public void saveAll() {
-        saveCalender();
-        this.players.forEach((uuid, player) -> savePlayer(uuid));
     }
 }

@@ -10,6 +10,7 @@ import net.kettlemc.advent.config.Configuration;
 import net.kettlemc.advent.config.Messages;
 import net.kettlemc.advent.config.data.AdventDataHandler;
 import net.kettlemc.kcommon.language.AdventureUtil;
+import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.Player;
@@ -32,7 +33,7 @@ public class AdventCalenderGUI {
     }
 
     public static void open(Player player) {
-        SGMenu menu = KAdvent.spigui().create(AdventureUtil.componentToLegacy(Messages.CALENDER_TITLE.value()), 6, TAG);
+        SGMenu menu = KAdvent.spigui().create(AdventureUtil.componentToLegacy(Messages.CALENDER_TITLE.value()), 6);
 
         for (int i = 0; i < 24; i++) {
             int day = i + 1;
@@ -43,11 +44,12 @@ public class AdventCalenderGUI {
                 handleClick(player, day);
                 button.setIcon(itemStack(KAdvent.instance().adventDataHandler().loadPlayer(player.getUniqueId()).hasOpened(day), day));
                 menu.setButton(event.getSlot(), button);
-                menu.refreshInventory(player);
+                // TODO: Refreshing on 1.7.10 doesn't work correctly, so we have to do this
+                player.getOpenInventory().getTopInventory().setItem(event.getSlot(), itemStack(KAdvent.instance().adventDataHandler().loadPlayer(player.getUniqueId()).hasOpened(day), day));
             }));
 
-            player.openInventory(menu.getInventory());
         }
+        player.openInventory(menu.getInventory());
     }
 
     private static ItemStack itemStack(boolean open, int day) {
@@ -58,8 +60,8 @@ public class AdventCalenderGUI {
                 .skullOwner(Configuration.DOOR_SKULL_OWNER.getValue())
                 .name(AdventureUtil.componentToLegacy(open ? Messages.DOOR_TITLE_OPENED.value(placeholder) : Messages.DOOR_TITLE_CLOSED.value(placeholder)))
                 .amount(day)
-                .ifThen(itemBuilder -> open, itemBuilder -> itemBuilder.enchant(Enchantment.SILK_TOUCH, 1))
-                .flag(ItemFlag.HIDE_ENCHANTS);
+                .ifThen(itemBuilder -> !open, itemBuilder -> itemBuilder.enchant(Enchantment.SILK_TOUCH, 1))
+                .ifThen(itemBuilder -> !Bukkit.getVersion().contains("1.7"), itemBuilder -> itemBuilder.flag(ItemFlag.HIDE_ENCHANTS));
 
         return item.build();
     }
