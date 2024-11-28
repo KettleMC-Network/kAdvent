@@ -33,10 +33,14 @@ public class Messages {
     public static final AdventureMessage DOOR_SET = AdventureMessage.of("calender.door.set", LANGUAGE_MANAGER);
     public static final AdventureMessage DOOR_GIVEN = AdventureMessage.of("calender.door.given", LANGUAGE_MANAGER);
 
+    public static final AdventureMessage DOOR_MATERIAL_SET = AdventureMessage.of("calender.material.set", LANGUAGE_MANAGER);
+    public static final AdventureMessage DOOR_MATERIAL_INVALID = AdventureMessage.of("calender.material.invalid", LANGUAGE_MANAGER);
+
     public static final AdventureMessage USAGE = AdventureMessage.of("usage.main", LANGUAGE_MANAGER);
     public static final AdventureMessage SET_USAGE = AdventureMessage.of("usage.set", LANGUAGE_MANAGER);
     public static final AdventureMessage GIVE_USAGE = AdventureMessage.of("usage.give", LANGUAGE_MANAGER);
     public static final AdventureMessage RESET_USAGE = AdventureMessage.of("usage.reset", LANGUAGE_MANAGER);
+    public static final AdventureMessage DOOR_MATERIAL_USAGE = AdventureMessage.of("usage.material", LANGUAGE_MANAGER);
 
     public static final AdventureMessage RESET_DOOR = AdventureMessage.of("reset.door", LANGUAGE_MANAGER);
     public static final AdventureMessage RESET_PLAYER = AdventureMessage.of("reset.player", LANGUAGE_MANAGER);

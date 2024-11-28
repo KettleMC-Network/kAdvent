@@ -3,40 +3,45 @@
   "no-permission": "<gray>You're not allowed to use this command.</gray>",
   "player-only": "<gray>This command can only be used by players.</gray>",
   "reload": {
-	"reloading": "<gray>Reloading config and calendar...</gray>",
-	"reloaded": "<gray>Reloaded config and calendar.</gray>",
-	"failed": "<gray>Failed to reload config and calendar.</gray>"
+    "reloading": "<gray>Reloading config and calendar...</gray>",
+    "reloaded": "<gray>Reloaded config and calendar.</gray>",
+    "failed": "<gray>Failed to reload config and calendar.</gray>"
   },
   "reset": {
-	"door": "<gray><player>'s <green>door <door></green> has been reset.</gray>",
-	"player": "<gray>All doors of <player> have been reset.</gray>"
+    "door": "<gray><player>'s <green>door <door></green> has been reset.</gray>",
+    "player": "<gray>All doors of <player> have been reset.</gray>"
   },
   "save": {
-	"saving": "<gray>Saving calendar and player data...</gray>"
+    "saving": "<gray>Saving calendar and player data...</gray>"
   },
   "usage": {
-	"reset": "<gray>/advent reset <player> [<day>]</gray>",
-	"set": "<gray>/advent set <day></gray>",
-	"give": "<gray>/advent give <day></gray>",
-	"main": "<gray>/advent [give|set|reset|reload]</gray>"
+    "reset": "<gray>/advent reset <player> [<day>]</gray>",
+    "set": "<gray>/advent set <day></gray>",
+    "give": "<gray>/advent give <day></gray>",
+    "main": "<gray>/advent [give|set|reset|reload|material]</gray>",
+    "material": "<gray>/advent material <Material></gray>"
   },
   "calender": {
-	"title": {
-	  "main": "<red>Advent Calendar</red>",
-	  "opened": "<red><door>. Door (geöffnet)</red>",
-	  "closed": "<green><door>. Door</green>"
-	},
-	"door": {
-	  "too-early": "<gray>You're not allowed to open door this door yet.</gray>",
-	  "too-late": "<gray>You're not allowed to open door this door anymore.</gray>",
-	  "opened": "<gray>You opened <green>door <door></green>.</gray>",
-	  "already-opened": "<gray>You already opened <green>door <door></green>.</gray>",
-	  "inventory-full": "<gray>Your inventory was full, some items have been dropped.</gray>",
-	  "not-configured": "<gray>This door hasn't been configured yet, please contact an admin.</gray>",
-	  "invalid": "<gray>Invalid door.</gray>",
-	  "given": "<gray>You received the contents of the door.</gray>",
-	  "set": "<gray>You set the contents of the door.</gray>"
-	},
-	"door-available": "<gray>You can open a door of your advent calender today.</gray>"
+    "title": {
+      "main": "<red>Advent Calendar</red>",
+      "opened": "<red><door>. Door (geöffnet)</red>",
+      "closed": "<green><door>. Door</green>"
+    },
+    "door": {
+      "too-early": "<gray>You're not allowed to open door this door yet.</gray>",
+      "too-late": "<gray>You're not allowed to open door this door anymore.</gray>",
+      "opened": "<gray>You opened <green>door <door></green>.</gray>",
+      "already-opened": "<gray>You already opened <green>door <door></green>.</gray>",
+      "inventory-full": "<gray>Your inventory was full, some items have been dropped.</gray>",
+      "not-configured": "<gray>This door hasn't been configured yet, please contact an admin.</gray>",
+      "invalid": "<gray>Invalid door.</gray>",
+      "given": "<gray>You received the contents of the door.</gray>",
+      "set": "<gray>You set the contents of the door.</gray>"
+    },
+    "door-available": "<gray>You can open a door of your advent calender today.</gray>",
+    "material": {
+      "set": "<gray>The door material has been set to <green><material></green>.</gray>",
+      "invalid": "<gray>This material cannot be used for doors.</gray>"
+    }
   }
 }

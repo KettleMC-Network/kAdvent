@@ -3,40 +3,45 @@
   "no-permission": "<gray>Du darfst diesen Befehl nicht nutzen.</gray>",
   "player-only": "<gray>Du musst ein Spieler sein, um diesen Befehl zu nutzen.</gray>",
   "reload": {
-	"reloading": "<gray>Der Adventskalender und die Config werden neu geladen...</gray>",
-	"reloaded": "<gray>Der Adventskalender und die Config wurden neu geladen.</gray>",
-	"failed": "<gray>Es ist ein Fehler beim Neuladen des Adventskalenders aufgetreten.</gray>"
+    "reloading": "<gray>Der Adventskalender und die Config werden neu geladen...</gray>",
+    "reloaded": "<gray>Der Adventskalender und die Config wurden neu geladen.</gray>",
+    "failed": "<gray>Es ist ein Fehler beim Neuladen des Adventskalenders aufgetreten.</gray>"
   },
   "reset": {
-	"door": "<gray><player>'s <green><door>. Türchen</green> wurde zurückgesetzt.</gray>",
-	"player": "<gray>Alle Türchen von <player> wurden zurückgesetzt.</gray>"
+    "door": "<gray><player>'s <green><door>. Türchen</green> wurde zurückgesetzt.</gray>",
+    "player": "<gray>Alle Türchen von <player> wurden zurückgesetzt.</gray>"
   },
   "save": {
-	"saving": "<gray>Speichere Kalender und Spielerdaten...</gray>"
+    "saving": "<gray>Speichere Kalender und Spielerdaten...</gray>"
   },
   "usage": {
-	"reset": "<gray>/advent reset <Spieler> [<Tag>]</gray>",
-	"set": "<gray>/advent set <Tag></gray>",
-	"give": "<gray>/advent give <Tag></gray>",
-	"main": "<gray>/advent [give|set|reset|reload]</gray>"
+    "reset": "<gray>/advent reset <Spieler> [<Tag>]</gray>",
+    "set": "<gray>/advent set <Tag></gray>",
+    "give": "<gray>/advent give <Tag></gray>",
+    "main": "<gray>/advent [give|set|reset|reload|material]</gray>",
+    "material": "<gray>/advent material <Material></gray>"
   },
   "calender": {
-	"title": {
-	  "main": "<red>Adventskalender</red>",
-	  "opened": "<red><door>. Türchen (geöffnet)</red>",
-	  "closed": "<green><door>. Türchen</green>"
-	},
-	"door": {
-	  "opened": "<gray>Du hast das <green><door>. Türchen</green> geöffnet.</gray>",
-	  "too-early": "<gray>Du darfst dieses Türchen noch nicht öffnen.</gray>",
-	  "too-late": "<gray>Du darfst dieses Türchen nicht mehr öffnen.</gray>",
-	  "already-opened": "<gray>Du hast das <green><door>. Türchen</green> bereits geöffnet.</gray>",
-	  "inventory-full": "<gray>Dein Inventar ist voll, Teile des Türchens wurden gedroppt.</gray>",
-	  "not-configured": "<gray>Dieses Türchen ist nicht konfiguriert. Melde dich bitte bei einem Admin.</gray>",
-	  "invalid": "<gray>Dieses Türchen ist ungültig.</gray>",
-	  "given": "<gray>Du hast den Inhalt des Türchens erhalten.</gray>",
-	  "set": "<gray>Du hast den Inhalt des Türchens gesetzt.</gray>"
-	},
-	"door-available": "<gray>Du kannst heute ein Türchen im Adventskalender öffnen!</gray>"
+    "title": {
+      "main": "<red>Adventskalender</red>",
+      "opened": "<red><door>. Türchen (geöffnet)</red>",
+      "closed": "<green><door>. Türchen</green>"
+    },
+    "door": {
+      "opened": "<gray>Du hast das <green><door>. Türchen</green> geöffnet.</gray>",
+      "too-early": "<gray>Du darfst dieses Türchen noch nicht öffnen.</gray>",
+      "too-late": "<gray>Du darfst dieses Türchen nicht mehr öffnen.</gray>",
+      "already-opened": "<gray>Du hast das <green><door>. Türchen</green> bereits geöffnet.</gray>",
+      "inventory-full": "<gray>Dein Inventar ist voll, Teile des Türchens wurden gedroppt.</gray>",
+      "not-configured": "<gray>Dieses Türchen ist nicht konfiguriert. Melde dich bitte bei einem Admin.</gray>",
+      "invalid": "<gray>Dieses Türchen ist ungültig.</gray>",
+      "given": "<gray>Du hast den Inhalt des Türchens erhalten.</gray>",
+      "set": "<gray>Du hast den Inhalt des Türchens gesetzt.</gray>"
+    },
+    "door-available": "<gray>Du kannst heute ein Türchen im Adventskalender öffnen!</gray>",
+    "material": {
+      "set": "<gray>Das Material für die Türchen wurde auf <green><material></green> gesetzt.</gray>",
+      "invalid": "<gray>Dieses Material kann nicht für die Türchen verwendet werden.</gray>"
+    }
   }
 }

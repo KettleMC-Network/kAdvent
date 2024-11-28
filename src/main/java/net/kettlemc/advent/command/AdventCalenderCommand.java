@@ -7,6 +7,7 @@ import net.kettlemc.advent.config.Messages;
 import net.kettlemc.advent.gui.AdventCalenderGUI;
 import net.kettlemc.kcommon.java.NumberUtil;
 import org.bukkit.Bukkit;
+import org.bukkit.Material;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -20,6 +21,8 @@ import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 public class AdventCalenderCommand implements CommandExecutor, TabCompleter {
+
+    private static final List<String> MATERIALS = Arrays.stream(Material.values()).map(Enum::name).collect(Collectors.toList());
 
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
@@ -64,7 +67,34 @@ public class AdventCalenderCommand implements CommandExecutor, TabCompleter {
             return true;
         }
 
-        if (args[0].equals("set")) {
+        if (args[0].equalsIgnoreCase("material")) {
+
+            if (!sender.hasPermission("system.advent.material")) {
+                KAdvent.instance().messages().sendMessage(sender, Messages.NO_PERMISSION);
+                return true;
+            }
+
+            if (args.length < 2) {
+                KAdvent.instance().messages().sendMessage(sender, Messages.DOOR_MATERIAL_USAGE);
+                return true;
+            }
+
+            Material material = Material.getMaterial(args[1]);
+
+            if (material == null) {
+                KAdvent.instance().messages().sendMessage(sender, Messages.DOOR_MATERIAL_INVALID);
+                return true;
+            }
+
+
+            Configuration.DOOR_MATERIAL.setValue(material.name());
+            Configuration.write();
+
+            KAdvent.instance().messages().sendMessage(sender, Messages.DOOR_MATERIAL_SET, Placeholder.of("material", (ctx, value) -> material.name()));
+            return true;
+        }
+
+        if (args[0].equalsIgnoreCase("set")) {
 
             if (!(sender instanceof Player)) {
                 KAdvent.instance().messages().sendMessage(sender, Messages.PLAYER_ONLY);
@@ -174,7 +204,7 @@ public class AdventCalenderCommand implements CommandExecutor, TabCompleter {
     @Override
     public List<String> onTabComplete(CommandSender sender, Command command, String alias, String[] args) {
         if (args.length <= 1) {
-            return StringUtil.copyPartialMatches(args.length == 1 ? args[0] : "", Arrays.asList("reload", "save", "set", "give", "reset"), new ArrayList<>());
+            return StringUtil.copyPartialMatches(args.length == 1 ? args[0] : "", Arrays.asList("reload", "save", "set", "give", "reset", "material"), new ArrayList<>());
         }
 
         if (args.length == 2 && args[0].equalsIgnoreCase("reset")) {
@@ -183,6 +213,10 @@ public class AdventCalenderCommand implements CommandExecutor, TabCompleter {
 
         if (args.length == 2 && args[0].equalsIgnoreCase("give") || args[0].equalsIgnoreCase("set")) {
             return IntStream.range(1, 25).boxed().sorted().map(String::valueOf).collect(Collectors.toList());
+        }
+
+        if (args.length == 3 && args[0].equalsIgnoreCase("material")) {
+            return MATERIALS;
         }
 
         return Collections.emptyList();
